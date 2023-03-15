@@ -36,9 +36,9 @@ namespace DBProject.Services
 
         }
 
-        public async Task ListAllContactsAsync()
+        public async Task ListAllTicketsAsync()
         {
-            //get all customers + addresses from database
+            //get all customers + tickets from database
             var customers = await CustomerService.GetAllAsync();
 
             if (customers.Any())
@@ -60,14 +60,14 @@ namespace DBProject.Services
 
 
         }
-        public async Task ListSpecificContactAsync()
+        public async Task ListSpecificTicketAsync()
         {
             Console.Write("Write the email of the customer: ");
             var email = Console.ReadLine();
 
             if (!string.IsNullOrEmpty(email))
             {
-                //get specific customer + address from database
+                //get specific customer + ticket from database
                 var customerTicket = await CustomerService.GetAsync(email);
 
                 if (customerTicket != null)
@@ -92,7 +92,7 @@ namespace DBProject.Services
         }
 
 
-        public async Task UpdateSpecificContactAsync()
+        public async Task UpdateSpecificTicketAsync()
         {
             Console.Write("Write the email of the customer: ");
             var email = Console.ReadLine();
@@ -149,7 +149,7 @@ namespace DBProject.Services
 
 
 
-        public async Task DeleteSpecificContactAsync()
+        public async Task DeleteSpecificTicketAsync()
         {
 
 
@@ -159,13 +159,35 @@ namespace DBProject.Services
 
             if (!string.IsNullOrEmpty(email))
             {
-                // delete specific customer from database
-                await CustomerService.DeleteAsync(email);
+                //get specific customer + ticket from database
+                var customerTicket = await CustomerService.GetAsync(email);
 
-            }
-            else
-            {
-                Console.WriteLine("No email address submitted.");
+                if (customerTicket != null)
+                {
+                    Console.WriteLine("Is this the ticket you want to delete?(y/n)");
+                    Console.WriteLine($"Customer ID: {customerTicket.Id}");
+                    Console.WriteLine($"Name: {customerTicket.FirstName} {customerTicket.LastName}");
+                    Console.WriteLine($"Email address: {customerTicket.Email}");
+                    Console.WriteLine($"Phone number: {customerTicket.PhoneNumber}");
+                    Console.WriteLine($"Ticket: {customerTicket.Description}, {customerTicket.SubmittedTime}, {customerTicket.Status}");
+                    Console.Write("(y/n):");
+                    string input = Console.ReadLine() ?? "";
+                    if (input.ToLower() == "y")
+                    {
+                        // delete specific customer from database
+                        await CustomerService.DeleteAsync(email);
+                        Console.WriteLine("The ticket is now removed.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("You have chosen to not delete the ticket.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No email address submitted.");
+                }
+
             }
         }
     }

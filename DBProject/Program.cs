@@ -27,22 +27,22 @@ while (true)
 
         case "2":
             Console.Clear();
-            await menu.ListAllContactsAsync();
+            await menu.ListAllTicketsAsync();
             break;
 
         case "3":
             Console.Clear();
-            await menu.ListSpecificContactAsync();
+            await menu.ListSpecificTicketAsync();
             break;
 
         case "4":
             Console.Clear();
-            await menu.UpdateSpecificContactAsync();
+            await menu.UpdateSpecificTicketAsync();
             break;
 
         case "5":
             Console.Clear();
-            await menu.DeleteSpecificContactAsync();
+            await menu.DeleteSpecificTicketAsync();
             break;
 
     }
