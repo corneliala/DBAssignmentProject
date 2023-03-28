@@ -1,10 +1,4 @@
-﻿//1. Skapa ett ärende och lagra det i databasen. 
-// Förnamn, efternamn, e-postadress, telefonnummer, beskrivning av ärendet, tidpunkt, status
-//2. Se alla ärenden. 
-//3. Se ett specifikt ärende. 
-//4. Byt status på ärendet [Ej påbörjad, Pågående, Avslutad]
-
-using DBProject.Services;
+﻿using DBProject.Services;
 
 var menu = new MenuService();
 

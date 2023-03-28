@@ -5,7 +5,7 @@ namespace DBProject.Contexts;
 
 internal class DataContext : DbContext
 {
-    private readonly string _connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\larzo\OneDrive\Desktop\datalagring\AssignmentProject\DBProject\Contexts\project_db.mdf;Integrated Security=True;Connect Timeout=30";
+    private readonly string _connectionString = @"";
 
     #region constructors
     public DataContext()
